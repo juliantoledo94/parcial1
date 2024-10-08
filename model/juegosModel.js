@@ -1,4 +1,4 @@
-import { required } from "joi";
+/* import { required } from "joi"; */
 import mongoose from "mongoose";
 
 const juegosSchema = new mongoose.Schema({
@@ -6,7 +6,7 @@ const juegosSchema = new mongoose.Schema({
         type:String,
         required:true
     },
-    descipcion:{
+    descripcion:{
         type:String,
         required:true
     },

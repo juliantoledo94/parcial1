@@ -3,7 +3,7 @@ import protagonistasModel from "../model/protagonistasModel.js";
 
 export const getprotagonistas = async (req, res) => {
     try {
-        const protagonistas = await protagonistasModel.find().populate("protagonistas");
+        const protagonistas = await protagonistasModel.find().populate("juegos");
         res.json(protagonistas)
     } catch (error) {
         res.status(400).json({error: error.message})

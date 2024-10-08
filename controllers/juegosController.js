@@ -2,7 +2,8 @@ import juegosModel from "../model/juegosModel.js";
 
 export const getJuegos = async (req, res) => {
     try {
-        const juegos = await juegosModel.find().populate("juegos");
+        const juegos = await juegosModel.find();
+        
         res.json(juegos)
     } catch (error) {
         res.status(400).json({error: error.message})

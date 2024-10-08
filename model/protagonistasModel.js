@@ -1,5 +1,5 @@
-import { required } from "joi";
-import mongoose from "mongoose";
+/* import { required } from "joi"; */
+import mongoose, { Schema } from "mongoose";
 
 const protagonistasSchema = new mongoose.Schema({
     nombre:{
@@ -13,7 +13,12 @@ const protagonistasSchema = new mongoose.Schema({
     genero:{
         type:String,
         required:true
-    }
+    },
+    juegos: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'juegos',
+        required: true  // Requiere al menos un juego asociado
+    }]
     
     
 })

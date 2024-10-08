@@ -1,8 +1,8 @@
 import express from "express";
 import mongoose from "mongoose";
 import dotenv from "dotenv";
-import cursosRouters from "./routes/cursosRoutes.js"
-import estudiantesRouters from "./routes/estudiantesRoutes.js"
+import juegosRouters from "./routes/juegosRoutes.js"
+import protagonistasRouters from "./routes/protagonistasRoutes.js"
 
 dotenv.config()
 
