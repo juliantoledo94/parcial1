@@ -9,6 +9,11 @@ dotenv.config()
 const app = express();
 const port = 3000;
 
+//FALTA 2 FILTROS
+//VALIDACIONES
+//USUARIOS JSONWEBTOKEN
+
+
 mongoose.connect(process.env.MONGODB_URI)
 .then(()=> console.log("conexion exitosa con mongodb!"))
 .catch((err) => console.error("error al conectar con mongodb!",err))
