@@ -49,14 +49,29 @@ export const searchByTag = async(req,res) =>{
     try {
         const tags = req.query.tags.split(",");
         const juegos = await juegosModel.find({tags:{$in:tags}})
+        res.json(juegos)
     } catch (error) {
         res.status(400).json({error: error.message})
     }
 }
-export const searchByYear = async(req,res) =>{
+export const searchByYear = async (req, res) => {
     try {
-        
+       
+        const year = req.query.year;
+        if (!year) {
+            return res.status(400).json({ error: "El parámetro 'year' es obligatorio" });
+        }
+        if (isNaN(year)) {
+            return res.status(400).json({ error: "El año debe ser un número válido" });
+        }
+        const yearNumber = Number(year);
+        const juegos = await juegosModel.find({ year: yearNumber });
+        if (juegos.length === 0) {
+            return res.status(404).json({ message: "No se encontraron juegos para el año " + yearNumber });
+        }
+        res.json(juegos);
+
     } catch (error) {
-        
+        res.status(400).json({ error: error.message });
     }
-}
+};
