@@ -7,6 +7,7 @@ import usuariosRouters from "./routes/usuariosRoutes.js"
 import path from "path";
 import { fileURLToPath } from 'url';
 
+
 dotenv.config()
 
 const app = express();
