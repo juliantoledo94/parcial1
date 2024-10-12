@@ -75,3 +75,22 @@ export const searchByYear = async (req, res) => {
         res.status(400).json({ error: error.message });
     }
 };
+export const searchByName = async (req, res) => {
+    try {
+       
+        const titulo = req.query.titulo;
+        if (!titulo) {
+            return res.status(400).json({ error: "El parámetro 'titulo' es obligatorio" });
+        }
+       
+        
+        const juegos = await juegosModel.find({ titulo: { $regex: titulo, $options: 'i' } });
+        if (juegos.length === 0) {
+            return res.status(404).json({ message: "No se encontraron juegos con el titulo " + titulo });
+        }
+        res.json(juegos);
+
+    } catch (error) {
+        res.status(400).json({ error: error.message });
+    }
+};
