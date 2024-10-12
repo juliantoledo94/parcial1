@@ -3,6 +3,7 @@ import mongoose from "mongoose";
 import dotenv from "dotenv";
 import juegosRouters from "./routes/juegosRoutes.js"
 import protagonistasRouters from "./routes/protagonistasRoutes.js"
+import usuariosRouters from "./routes/usuariosRoutes.js"
 import path from "path";
 import { fileURLToPath } from 'url';
 
@@ -45,7 +46,8 @@ app.get("/",(req,res) =>{
 
 app.use(validateBody)
 
-app.use("/juegos",juegosRouters)
-app.use("/protagonistas",protagonistasRouters)
+app.use("/juegos",juegosRouters);
+app.use("/protagonistas",protagonistasRouters);
+app.use("/usuarios",usuariosRouters);
 
 app.listen(port,() => console.log(`https://localhost:${port}`));
