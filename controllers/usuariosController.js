@@ -1,9 +1,16 @@
 import usuariosModel from "../model/usuariosModel.js";
+import userSchema from "../schemas/usuariosSchema.js";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken"
 
 export const registrarUsuario = async (req, res) => {
     try {
+
+        const { error } = userSchema.validate(req.body, { abortEarly: false });
+        if (error) {
+            const errorMessages = error.details.map(detail => detail.message);
+            return res.status(400).json({ errors: errorMessages });
+        }
 
         const { email, password } = req.body;
 
@@ -39,9 +46,9 @@ export const usuariosLogin = async (req, res) => {
         const { email, password } = req.body;
         if (!email || !password) return res.status(400).send("los campos son obligatorios")
 
-            const usuario = await usuariosModel.findOne({ email });
+        const usuario = await usuariosModel.findOne({ email });
 
-        if (!usuario ) {
+        if (!usuario) {
             return res.status(404).json({ message: "El usuario no está registrado" });
         }
 
@@ -66,7 +73,7 @@ export const usuariosLogin = async (req, res) => {
 export const obtenerUsuario = async (req, res) => {
     try {
         const usuarioId = req.user.id; // Aquí está correcto si el token contiene `id`
-        
+
         // O si has guardado `_id` en el token, deberías usar:
         // const usuarioId = req.user._id; 
 

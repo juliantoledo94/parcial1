@@ -1,10 +1,11 @@
 import juegosModel from "../model/juegosModel.js";
+import juegoSchema from "../schemas/juegosSchema.js";
 
 export const getJuegos = async (req, res) => {
     try {
         const juegos = await juegosModel.find();
         
-        res.json(juegos)
+        res.status(200).json(juegos)
     } catch (error) {
         res.status(400).json({error: error.message})
     }
@@ -13,13 +14,24 @@ export const getJuegos = async (req, res) => {
 
 export const createJuegos = async(req,res) =>{
     try {
+
+        const { error } = juegoSchema.validate(req.body, { abortEarly: false });
+        if (error) {
+            // Si hay errores de validación, mapeamos los mensajes de error y los devolvemos
+            const errorMessages = error.details.map(detail => detail.message);
+            return res.status(400).json({ errors: errorMessages });
+        }
+
+
         const juego = new juegosModel({...req.body})
         const newJuego = await juego.save()
-        res.json(newJuego);
+        res.status(201).json(newJuego);
     } catch (error) {
-        res.status(400).json({error: error.message})
+        res.status(500).json({error: error.message})
     }
 }
+
+
 export const getJuegosById = async(req,res) =>{
     try {
         const juego = await juegosModel.findById(req.params.id);

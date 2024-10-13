@@ -1,4 +1,6 @@
 import protagonistasModel from "../model/protagonistasModel.js";
+import protagonistaSchema from "../schemas/protagonistasSchema.js";
+protagonistaSchema
 
 
 export const getprotagonistas = async (req, res) => {
@@ -13,16 +15,26 @@ export const getprotagonistas = async (req, res) => {
 
 export const createprotagonistas = async(req,res) =>{
     try {
+
+        const { error } = protagonistaSchema.validate(req.body, { abortEarly: false });
+        if (error) {
+            // Mapeamos los mensajes de error y los devolvemos
+            const errorMessages = error.details.map(detail => detail.message);
+            return res.status(400).json({ errors: errorMessages });
+        }
+
+
+
         const protagonista = new protagonistasModel({...req.body})
         const newprotagonista = await protagonista.save()
-        res.json(newprotagonista);
+        res.status(201).json(newprotagonista);
     } catch (error) {
         res.status(400).json({error: error.message})
     }
 }
 export const getProtagonistasById = async(req,res) =>{
     try {
-        const protagonista = await protagonistasModel.findById(req.params.id);
+        const protagonista = await protagonistasModel.findById(req.params.id).populate("juegos");
         if(!protagonista) return res.status(400).json({error:"not found"})
         res.json(protagonista);
     } catch (error) {
