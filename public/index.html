@@ -1,12 +1,53 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Parcial 1</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link rel="stylesheet" href="css/style.css">
 </head>
+
 <body>
-    <h1>Documentacion Parcial 1</h1>
+    <main>
+        <section class="container">
+            <h1 class="text-center mt-5">Documentacion Parcial 1</h1>
+            <p class="mt-5 mb-5">Esta Api consiste en la creacion, edicion y eliminacion de juegos y de sus respectivos protagonistas. La misma permite realizar busquedas por los titulos de los juegos, por su fecha de salida y por los tags o etiquetas de los mismos.</p>
+            <div>
+                <h2>Instrucciones - Recomendaciones para útilizar la API:</h2>
+                <ul>
+                    <li>1 Crear los juegos en la siguiente ruta con el metodo POST <a href="http://localhost:3000/juegos">http://localhost:3000/juegos</a></li>
+                    <li>2 Una vez creados los juegos consultar la lista de los mismos para obtener su id y poder asociarlos posteriormente a un protagonista. Para obtener la lista de juegos creados utilziar la siguiente ruta con el metodo GET <a href="http://localhost:3000/protagonistas"></a>http://localhost:3000/protagonistas</li>
+                    <li>3 Crear los protagonistas en la siguiente ruta con el metodo POST <a href="http://localhost:3000/protagonistas">http://localhost:3000/protagonistas</a></li>
+                    <li>4 En el caso de querer modificar informacion sobre algun juego o protagonista utilizar las mismas rutas pero con el metodo PUT</li>
+                    <li>5 En el caso de desear eliminar algun juego al igual que en el punto anterior utilizar las respectivas rutas pero con el metodo DELETE.</li>
+                    <li>6 En el caso de querer filtrar un juego por su nombre utilizar la siguiente ruta http://localhost:3000/juegos/search/titulo?="escriba el nombre del juego a buscar"</li>
+                    <li>7 En el caso de querer filtrar por año http://localhost:3000/juegos/search/year?="ingrese el año a buscar" </li>
+                    <li>8 En el caso de querer filtrar por un protagonista o juego especifico usar las rutas utilizadas para listar juegos o protagonistas seguidas del id de los mismos. Ej: http://localhost:3000/protagonistas/"ingresar id"</li>
+                </ul>
+                
+            </div>
+            
+        </section>
+    </main>
+
+    <footer class="mt-5">
+        <section class="">
+            <div class="d-flex flex-column ">
+                <ul>
+                    <li>Alumno: Julian Toledo</li>
+                    <li>Materia: Aplicaciones Hibridas</li>
+                    <li>Docente: MARCOS GALBÁN, Camila Belén</li>
+                    <li>Comisión: DWN4AV</li>
+                </ul>
+            </div>
+        </section>
+    </footer>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+        crossorigin="anonymous"></script>
 </body>
+
 </html>
